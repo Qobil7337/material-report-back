@@ -14,10 +14,10 @@ export class NomenclatureController {
         return this.nomenclatureService.findAll()
     }
 
-    @Get(':id')
-    findOne(@Param() id: number) {
-        return this.nomenclatureService.findOne(id)
-    }
+    // @Get(':id')
+    // findOne(@Param() id: number) {
+    //     return this.nomenclatureService.findOne(id)
+    // }
 
     @Post()
     createNomenclature(@Body() dto: CreateNomenclatureDto) {

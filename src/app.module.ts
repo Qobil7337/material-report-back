@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { NomenclatureModule } from './nomenclature/nomenclature.module';
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {Nomenclature} from "./nomenclature/nomenclature.entity";
+import { GoodsInwardsModule } from './goods-inwards/goods-inwards.module';
+import {GoodsInwardsItemModule} from "./goods-inwards/goods-inwards-item/goods-inwards-item.module";
 
 @Module({
   imports: [
@@ -18,7 +20,9 @@ import {Nomenclature} from "./nomenclature/nomenclature.entity";
         entities: [Nomenclature],
         synchronize: true,
         autoLoadEntities: true,
-    })
+    }),
+      GoodsInwardsModule,
+      GoodsInwardsItemModule
   ],
   controllers: [AppController],
   providers: [AppService],

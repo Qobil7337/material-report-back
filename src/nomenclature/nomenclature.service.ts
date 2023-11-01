@@ -16,10 +16,10 @@ export class NomenclatureService {
         return await this.nomenclatureRepository.find()
     }
 
-    async findOne(id: number) {
-        // @ts-ignore
-        return await this.nomenclatureRepository.findOne(id)
-    }
+    // async findOne(id: number) {
+    //     // @ts-ignore
+    //     return await this.nomenclatureRepository.findOne(id)
+    // }
 
     async create(createNomenclatureDto: CreateNomenclatureDto) {
         const nomenclature = createNomenclatureDto

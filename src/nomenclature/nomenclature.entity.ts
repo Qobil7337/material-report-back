@@ -1,8 +1,8 @@
-import {Column, Entity, PrimaryGeneratedColumn, Unique} from "typeorm";
+import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {IsNotEmpty} from "class-validator";
+import {GoodsInwardsItem} from "../goods-inwards/goods-inwards-item/goods-inwards-item.entity";
 
 @Entity()
-@Unique(['name'])
 export class Nomenclature {
     @PrimaryGeneratedColumn()
     id: number;
@@ -12,4 +12,6 @@ export class Nomenclature {
     @Column()
     name: string;
 
+    @OneToMany(() => GoodsInwardsItem, (goodsInwardsItem) => goodsInwardsItem.nomenclature)
+    goodsInwardsItems: GoodsInwardsItem[]
 }
