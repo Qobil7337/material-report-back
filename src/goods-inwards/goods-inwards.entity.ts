@@ -5,6 +5,7 @@ import { GoodsInwardsItem } from "./goods-inwards-item/goods-inwards-item.entity
 
 @Entity()
 export class GoodsInwards {
+    // Primary key
     @PrimaryGeneratedColumn()
     @IsNotEmpty()
     id: number;
@@ -13,6 +14,7 @@ export class GoodsInwards {
     @IsNotEmpty()
     supplier: string;
 
+    // Foreign key
     @Column()
     @IsNotEmpty()
     warehouse: string;

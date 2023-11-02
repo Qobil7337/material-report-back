@@ -11,14 +11,17 @@ export enum Unit {
 
 @Entity()
 export class GoodsInwardsItem {
+    // Primary key
     @PrimaryGeneratedColumn()
     @IsNotEmpty()
     id: number;
 
+    // Foreign key
     @Column()
     @IsNotEmpty()
     goodsInwardsID: number;
 
+    // Foreign key
     @Column()
     @IsNotEmpty()
     nomenclatureID: number;

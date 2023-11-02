@@ -4,6 +4,7 @@ import {GoodsInwardsItem} from "../goods-inwards/goods-inwards-item/goods-inward
 
 @Entity()
 export class Nomenclature {
+    // Primary key
     @PrimaryGeneratedColumn()
     id: number;
 

@@ -6,10 +6,10 @@ import {TypeOrmModule} from "@nestjs/typeorm";
 import {Nomenclature} from "./nomenclature/nomenclature.entity";
 import { GoodsInwardsModule } from './goods-inwards/goods-inwards.module';
 import {GoodsInwardsItemModule} from "./goods-inwards/goods-inwards-item/goods-inwards-item.module";
+import { WarehouseModule } from './warehouse/warehouse.module';
 
 @Module({
   imports: [
-      NomenclatureModule,
       TypeOrmModule.forRoot({
         type: 'postgres',
         host: 'localhost',
@@ -21,8 +21,10 @@ import {GoodsInwardsItemModule} from "./goods-inwards/goods-inwards-item/goods-i
         synchronize: true,
         autoLoadEntities: true,
     }),
+      NomenclatureModule,
       GoodsInwardsModule,
-      GoodsInwardsItemModule
+      GoodsInwardsItemModule,
+      WarehouseModule
   ],
   controllers: [AppController],
   providers: [AppService],

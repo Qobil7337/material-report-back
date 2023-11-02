@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { GoodsInwardsController } from './goods-inwards.controller';
 import { GoodsInwardsService } from './goods-inwards.service';
-import { GoodsInwardsItemModule } from './goods-inwards-item/goods-inwards-item.module';
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {GoodsInwards} from "./goods-inwards.entity";
 import {GoodsInwardsItem} from "./goods-inwards-item/goods-inwards-item.entity";
