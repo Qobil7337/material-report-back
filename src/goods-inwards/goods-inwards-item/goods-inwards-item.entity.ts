@@ -16,16 +16,6 @@ export class GoodsInwardsItem {
     @IsNotEmpty()
     id: number;
 
-    // Foreign key
-    @Column()
-    @IsNotEmpty()
-    goodsInwardsID: number;
-
-    // Foreign key
-    @Column()
-    @IsNotEmpty()
-    nomenclatureID: number;
-
     @Column({type: "enum", enum: Unit, default: Unit.kg})
     @IsNotEmpty()
     unitOfMeasure: Unit;
@@ -42,15 +32,15 @@ export class GoodsInwardsItem {
     @Column()
     @IsNumber()
     @IsNotEmpty()
-    totalSum: number;
+    sum: number;
 
     @Column()
     @IsNotEmpty()
-    dateOfDelivery: Date;
+    date: Date;
 
     @ManyToOne(() => Nomenclature, (nomenclature) => nomenclature.goodsInwardsItems)
     nomenclature: Nomenclature
 
-    @ManyToOne(() => GoodsInwards, (goodsInwards) => goodsInwards.goodsInwardsItems)
+    @ManyToOne(() => GoodsInwards, (goodsInwards) => goodsInwards.goodsInwardsItems, {onDelete: 'CASCADE'})
     goodsInwards: GoodsInwards
 }

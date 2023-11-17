@@ -25,7 +25,7 @@ export class GoodsInwards {
 
     @Column()
     @IsNotEmpty()
-    dateOfDelivery: Date;
+    date: Date;
 
     @OneToMany(() => GoodsInwardsItem, (goodsInwardsItem) => goodsInwardsItem.goodsInwards)
     goodsInwardsItems: GoodsInwardsItem[]

@@ -1,4 +1,4 @@
-import {Body, Controller, Post} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post} from '@nestjs/common';
 import {CreateGoodsInwardsDto} from "./dto/create-goods-inwards.dto";
 import {GoodsInwardsService} from "./goods-inwards.service";
 
@@ -9,7 +9,19 @@ export class GoodsInwardsController {
     }
 
     @Post()
-    create(@Body() dto: CreateGoodsInwardsDto) {
+    async create(@Body() dto: CreateGoodsInwardsDto) {
         return this.goodsInwardsService.create(dto)
     }
+
+    @Get()
+    async findAll() {
+        return this.goodsInwardsService.findAll()
+    }
+
+    @Delete(':id')
+    async remove(@Param('id') id: string) {
+        const numericId = Number(id);
+        return this.goodsInwardsService.remove(numericId);
+    }
+
 }

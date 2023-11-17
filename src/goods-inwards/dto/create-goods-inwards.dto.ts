@@ -1,12 +1,25 @@
+import {Unit} from "../goods-inwards-item/goods-inwards-item.entity";
 
 export class CreateGoodsInwardsDto {
 
-    supplier: string;
+    date: Date
 
-    warehouse: string;
+    supplier: string
 
-    totalSum: number;
+    warehouse: string
 
-    dateOfDelivery: Date;
+    goodsInwardsItems: [
+        {
+            nomenclatureID: number,
+            nomenclatureName: string,
+            unit: Unit,
+            quantity: number,
+            price: number,
+            sum: number
+        }
+    ]
+
+    totalSum: number
+
 
 }
