@@ -7,6 +7,7 @@ import {Nomenclature} from "./nomenclature/nomenclature.entity";
 import { GoodsInwardsModule } from './goods-inwards/goods-inwards.module';
 import {GoodsInwardsItemModule} from "./goods-inwards/goods-inwards-item/goods-inwards-item.module";
 import { WarehouseModule } from './warehouse/warehouse.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -24,7 +25,8 @@ import { WarehouseModule } from './warehouse/warehouse.module';
       NomenclatureModule,
       GoodsInwardsModule,
       GoodsInwardsItemModule,
-      WarehouseModule
+      WarehouseModule,
+      ProductModule
   ],
   controllers: [AppController],
   providers: [AppService],
