@@ -25,6 +25,7 @@ export class ProductService {
         product.date = dto.date;
         product.name = dto.name;
         product.category = dto.category;
+        product.imageUrl = dto.imageUrl;
         product.totalCost = dto.totalCost;
         product.salePrice = dto.salePrice;
         product.grossProfit = dto.grossProfit;

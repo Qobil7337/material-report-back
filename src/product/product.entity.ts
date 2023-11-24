@@ -21,6 +21,10 @@ export class Product {
 
     @Column()
     @IsNotEmpty()
+    imageUrl: string;
+
+    @Column()
+    @IsNotEmpty()
     totalCost: number;
 
     @Column()

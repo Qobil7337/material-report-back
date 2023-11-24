@@ -9,6 +9,8 @@ export class CreateProductDto {
 
     category: string
 
+    imageUrl: string
+
     productItem: [
         {
             nomenclatureID: number,
