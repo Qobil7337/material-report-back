@@ -1,6 +1,7 @@
 import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {IsNotEmpty} from "class-validator";
 import {ProductItem} from "./product-item/product-item.entity";
+import {OrderItem} from "../order/order-item/order-item.entity";
 
 
 
@@ -45,4 +46,7 @@ export class Product {
 
     @OneToMany(() => ProductItem, (productItem) => productItem.product)
     productItems: ProductItem[]
+
+    @OneToMany(() => OrderItem, (orderItem) => orderItem.product)
+    orderItems: OrderItem[]
 }

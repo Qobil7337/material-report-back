@@ -51,6 +51,13 @@ export class ProductService {
         }
     }
 
+    async findOne(id: number) {
+        return await this.productRepository.findOne({ where:
+            // @ts-ignore
+                { id: id }
+        })
+    }
+
     findAll() {
         return this.productRepository.find({
             relations: ['productItems', 'productItems.nomenclature'], // Include the necessary relationships

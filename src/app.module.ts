@@ -8,6 +8,7 @@ import { GoodsInwardsModule } from './goods-inwards/goods-inwards.module';
 import {GoodsInwardsItemModule} from "./goods-inwards/goods-inwards-item/goods-inwards-item.module";
 import { WarehouseModule } from './warehouse/warehouse.module';
 import { ProductModule } from './product/product.module';
+import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [
@@ -26,7 +27,8 @@ import { ProductModule } from './product/product.module';
       GoodsInwardsModule,
       GoodsInwardsItemModule,
       WarehouseModule,
-      ProductModule
+      ProductModule,
+      OrderModule
   ],
   controllers: [AppController],
   providers: [AppService],
