@@ -1,5 +1,6 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
 import {Unit} from "../goods-inwards/goods-inwards-item/goods-inwards-item.entity";
+import {Nomenclature} from "../nomenclature/nomenclature.entity";
 
 
 @Entity()
@@ -8,27 +9,14 @@ export class Warehouse{
     @PrimaryGeneratedColumn()
     id: number
 
-    // Foreign key array[]
-    @Column()
-    warehouseID: number
-
     // Foreign key
-    @Column()
-    goodsInwardsID: number
-
-    // Foreign key
-    @Column()
-    nomenclatureID: number
+    @ManyToOne(() => Nomenclature, (nomenclature) => nomenclature.inventory)
+    inventory: Nomenclature
 
     @Column()
     unitOfMeasure: Unit
 
-    @Column()
-    quantity: number
+    @Column({type: "numeric"})
+    accountingBalance: number
 
-    @Column()
-    price: number
-
-    @Column()
-    totalSum: number
 }

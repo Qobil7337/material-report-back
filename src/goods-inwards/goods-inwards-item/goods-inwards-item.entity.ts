@@ -20,7 +20,7 @@ export class GoodsInwardsItem {
     @IsNotEmpty()
     unitOfMeasure: Unit;
 
-    @Column()
+    @Column({type: "numeric"})
     @IsNotEmpty()
     quantity: number;
 

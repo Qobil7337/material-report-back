@@ -11,12 +11,14 @@ import {ProductService} from "../product/product.service";
 import {Nomenclature} from "../nomenclature/nomenclature.entity";
 import {ProductItem} from "../product/product-item/product-item.entity";
 import {NomenclatureService} from "../nomenclature/nomenclature.service";
+import {WarehouseService} from "../warehouse/warehouse.service";
+import {Warehouse} from "../warehouse/warehouse.entity";
 
 @Module({
   controllers: [OrderController, OrderItemController],
-  providers: [OrderService, OrderItemService, ProductService,NomenclatureService],
+  providers: [OrderService, OrderItemService, ProductService,NomenclatureService, WarehouseService],
   imports: [
-    TypeOrmModule.forFeature([Order, OrderItem, Product, Nomenclature, ProductItem])
+    TypeOrmModule.forFeature([Order, OrderItem, Product, Nomenclature, ProductItem, Warehouse])
   ]
 })
 export class OrderModule {}

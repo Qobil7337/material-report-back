@@ -5,6 +5,7 @@ import {Order} from "./order.entity";
 import {OrderItem} from "./order-item/order-item.entity";
 import {CreateOrderDto} from "./dto/create-order.dto";
 import {ProductService} from "../product/product.service";
+import {WarehouseService} from "../warehouse/warehouse.service";
 
 @Injectable()
 export class OrderService {
@@ -12,7 +13,8 @@ export class OrderService {
 
     constructor(@InjectRepository(Order) private orderRepository: Repository<Order>,
                 @InjectRepository(OrderItem) private orderItemRepository: Repository<OrderItem>,
-                private productService: ProductService
+                private productService: ProductService,
+                private warehouseService: WarehouseService
     ) {
     }
 
@@ -41,7 +43,7 @@ export class OrderService {
             // Save GoodsInwardsItem instance
             await this.orderItemRepository.save(orderItem);
         }
-        console.log(dto)
+        await this.warehouseService.onSaveOrder(dto)
     }
 
     findAll() {
@@ -52,7 +54,8 @@ export class OrderService {
 
 
     async remove(id:number) {
-        const order = await this.orderRepository.findOne({where: {id: id}})
+        const order = await this.orderRepository.findOne({where: {id: id},relations: ['orderItems', 'orderItems.product']})
+        await this.warehouseService.onRemoveOrder(order)
         await this.orderRepository.remove(order)
     }
 }

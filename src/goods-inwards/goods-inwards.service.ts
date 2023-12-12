@@ -4,18 +4,16 @@ import {InjectRepository} from "@nestjs/typeorm";
 import {GoodsInwards} from "./goods-inwards.entity";
 import {Repository} from "typeorm";
 import {GoodsInwardsItem} from "./goods-inwards-item/goods-inwards-item.entity";
-import {GoodsInwardsItemService} from "./goods-inwards-item/goods-inwards-item.service";
-import {Nomenclature} from "../nomenclature/nomenclature.entity";
 import {NomenclatureService} from "../nomenclature/nomenclature.service";
-import * as wasi from "wasi";
-import {raw} from "express";
+import {WarehouseService} from "../warehouse/warehouse.service";
 
 @Injectable()
 export class GoodsInwardsService {
 
     constructor(@InjectRepository(GoodsInwards) private goodsInwardsRepository: Repository<GoodsInwards>,
                 @InjectRepository(GoodsInwardsItem) private goodsInwardsItemRepository: Repository<GoodsInwardsItem>,
-                private nomenclatureService: NomenclatureService
+                private nomenclatureService: NomenclatureService,
+                private warehouseService: WarehouseService
                 ) {
     }
 
@@ -48,6 +46,7 @@ export class GoodsInwardsService {
                 // Save GoodsInwardsItem instance
                 await this.goodsInwardsItemRepository.save(goodsInwardsItem);
             }
+            await this.warehouseService.onSaveGoodsInwards(dto)
         }
 
         findAll() {
@@ -59,6 +58,8 @@ export class GoodsInwardsService {
 
         async remove(id:number) {
             const goodsInwards = await this.goodsInwardsRepository.findOne({where: {id: id}})
+            const goodsInwardsWithItems = await this.goodsInwardsRepository.findOne({where: {id: id}, relations: ['goodsInwardsItems', 'goodsInwardsItems.nomenclature']})
+            await this.warehouseService.onRemoveGoodsInwards(goodsInwardsWithItems)
             await this.goodsInwardsRepository.remove(goodsInwards)
         }
 }
