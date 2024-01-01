@@ -9,6 +9,8 @@ import {GoodsInwardsItemModule} from "./goods-inwards/goods-inwards-item/goods-i
 import { WarehouseModule } from './warehouse/warehouse.module';
 import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
+import * as fs from "fs";
+import * as path from "path";
 
 @Module({
   imports: [
@@ -22,7 +24,12 @@ import { OrderModule } from './order/order.module';
         entities: [Nomenclature],
         synchronize: true,
         autoLoadEntities: true,
-    }),
+        ssl: {
+          ca: fs.readFileSync('/Users/kobiljonmdis/Downloads/ca-certificate.crt'), // Path to CA certificate file
+          rejectUnauthorized: true, // Set this to true in production with valid certificates
+        },
+        connectTimeoutMS: 10000,
+      }),
       NomenclatureModule,
       GoodsInwardsModule,
       GoodsInwardsItemModule,
