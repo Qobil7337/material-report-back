@@ -11,7 +11,8 @@ import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
 import * as fs from "fs";
 import * as path from "path";
-
+// Assuming this is in the app.module.ts file
+const certificatePath = path.join(__dirname, '../ca-certificate.crt');
 @Module({
   imports: [
       TypeOrmModule.forRoot({
@@ -24,11 +25,10 @@ import * as path from "path";
         entities: [Nomenclature],
         synchronize: true,
         autoLoadEntities: true,
-        ssl: {
-          ca: fs.readFileSync('/Users/kobiljonmdis/Downloads/ca-certificate.crt'), // Path to CA certificate file
-          rejectUnauthorized: true, // Set this to true in production with valid certificates
-        },
-        connectTimeoutMS: 10000,
+          ssl: {
+              ca: fs.readFileSync(certificatePath),
+              rejectUnauthorized: true, // Set this to true in production with valid certificates
+          },
       }),
       NomenclatureModule,
       GoodsInwardsModule,
