@@ -14,11 +14,11 @@ import { OrderModule } from './order/order.module';
   imports: [
       TypeOrmModule.forRoot({
         type: 'postgres',
-        host: '8869374e57ba',
-        port: 5432,
-        username: 'postgres',
-        password: 'postgres',
-        database: 'sales-report',
+        host: 'db-postgresql-nyc3-74722-do-user-15359789-0.c.db.ondigitalocean.com',
+        port: 25060,
+        username: 'doadmin',
+        password: 'AVNS_yeSZgYf2BZzCV-fNGDQ',
+        database: 'defaultdb',
         entities: [Nomenclature],
         synchronize: true,
         autoLoadEntities: true,
