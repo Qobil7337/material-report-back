@@ -11,24 +11,29 @@ import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
 import * as fs from "fs";
 import * as path from "path";
+import {ConfigModule} from "@nestjs/config";
+import * as process from "process";
 // Assuming this is in the app.module.ts file
 const certificatePath = path.join(__dirname, '../ca-certificate.crt');
 @Module({
   imports: [
+      ConfigModule.forRoot({
+          envFilePath: '.env'
+      }),
       TypeOrmModule.forRoot({
         type: 'postgres',
-        host: 'db-postgresql-nyc3-74722-do-user-15359789-0.c.db.ondigitalocean.com',
-        port: 25060,
-        username: 'doadmin',
-        password: 'AVNS_yeSZgYf2BZzCV-fNGDQ',
-        database: 'defaultdb',
+        host: process.env.HOST,
+        port: parseInt(process.env.DB_PORT, 10),
+        username: process.env.USER_NAME,
+        password: process.env.PASSWORD,
+        database: process.env.DB,
         entities: [Nomenclature],
         synchronize: true,
         autoLoadEntities: true,
-          ssl: {
-              ca: fs.readFileSync(certificatePath),
-              rejectUnauthorized: true, // Set this to true in production with valid certificates
-          },
+          // ssl: {
+          //     ca: fs.readFileSync(certificatePath),
+          //     rejectUnauthorized: true, // Set this to true in production with valid certificates
+          // },
       }),
       NomenclatureModule,
       GoodsInwardsModule,
