@@ -30,10 +30,10 @@ const certificatePath = path.join(__dirname, '../ca-certificate.crt');
         entities: [Nomenclature],
         synchronize: true,
         autoLoadEntities: true,
-          // ssl: {
-          //     ca: fs.readFileSync(certificatePath),
-          //     rejectUnauthorized: true, // Set this to true in production with valid certificates
-          // },
+          ssl: {
+              ca: fs.readFileSync(certificatePath),
+              rejectUnauthorized: true, // Set this to true in production with valid certificates
+          },
       }),
       NomenclatureModule,
       GoodsInwardsModule,
