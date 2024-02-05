@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
 import {InjectRepository} from "@nestjs/typeorm";
 import {Repository} from "typeorm";
 import {NomenclatureService} from "../nomenclature/nomenclature.service";
@@ -66,8 +66,14 @@ export class ProductService {
 
 
     async remove(id:number) {
-        const product = await this.productRepository.findOne({where: {id: id}})
-        await this.productRepository.remove(product)
+        try {
+            const product = await this.productRepository.findOne({where: {id: id}})
+            await this.productRepository.remove(product)
+            return null
+        } catch (e) {
+            throw new HttpException({message: e}, HttpStatus.INTERNAL_SERVER_ERROR)
+        }
+
     }
 }
 
